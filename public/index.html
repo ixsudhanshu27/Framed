@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framed — Your photos, restored and framed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  /* ---------- Hero: E-Summit centered layout + portfolio glow, lime, outline text ---------- */
+  .hero { position: relative; padding: 110px 0 120px; overflow: hidden; }
+  .hero .wrap { position: relative; z-index: 2; text-align: center; }
+  .glow1 { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(238,43,43,0.08) 0%, transparent 65%); pointer-events: none; }
+  .glow2 { position: absolute; bottom: -120px; right: -80px; width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%); pointer-events: none; }
+  .badge { display: inline-flex; align-items: center; gap: 0.55rem; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    font-weight: 500; letter-spacing: 0.1em; color: var(--lime); border: 1px solid rgba(238,43,43,0.2);
+    background: rgba(238,43,43,0.06); padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 2rem; }
+  .badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: blink 2.5s ease-in-out infinite; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .hero h1 { font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.95; letter-spacing: -0.04em; max-width: 14ch; margin: 0 auto; }
+  .hero h1 .stroke { -webkit-text-stroke: 1.5px rgba(250,250,250,0.25); color: transparent; }
+  .hero h1 em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; color: var(--lime); letter-spacing: -0.02em; }
+  .hero p.lede { font-size: 1.05rem; max-width: 46ch; margin: 1.8rem auto 0; line-height: 1.8; }
+  .hero .actions { display: flex; gap: 12px; margin-top: 2.2rem; justify-content: center; flex-wrap: wrap; }
+  .hero .stats { display: flex; gap: 3rem; justify-content: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .hero .stats strong { display: block; font-family: 'Clash Display', sans-serif; font-size: 2rem; color: var(--lime); letter-spacing: -0.03em; line-height: 1.1; }
+  .hero .stats span { font-size: 0.7rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* Floating geometric shapes (E-Summit) in lime */
+  .shape { position: absolute; opacity: 0.35; z-index: 1; animation: float 7s ease-in-out infinite; }
+  .shape svg { width: 100%; height: 100%; }
+  .s1 { width: 70px; top: 14%; left: 7%; }
+  .s2 { width: 46px; top: 62%; left: 12%; animation-delay: 1.2s; }
+  .s3 { width: 80px; top: 20%; right: 8%; animation-delay: 0.6s; }
+  .s4 { width: 50px; top: 66%; right: 13%; animation-delay: 1.8s; }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(8deg); } }
+
+  section.block { padding: 6rem 0; border-top: 1px solid var(--border); }
+  section.alt { background: var(--bg1); }
+
+  /* Audience grid */
+  .audience { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  @media (max-width: 860px) { .audience { grid-template-columns: repeat(2, 1fr); } }
+  .audience > div { background: var(--bg1); padding: 26px 22px; transition: background 0.2s; }
+  .audience > div:hover { background: var(--bg2); }
+  .audience h3 { font-size: 1.05rem; color: var(--white); }
+  .audience p { font-size: 0.88rem; margin-top: 6px; }
+
+  /* Timeline (E-Summit schedule) with lime dots */
+  .timeline { position: relative; padding-left: 34px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1px; background: var(--border2); }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ''; position: absolute; left: -34px; top: 5px; width: 13px; height: 13px; border-radius: 50%;
+    background: var(--lime); border: 3px solid var(--bg); box-shadow: 0 0 12px rgba(238,43,43,0.5); }
+  .tl-item .day { font-family: 'JetBrains Mono', monospace; color: var(--lime); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+  .tl-item h3 { font-size: 1.25rem; margin-bottom: 6px; }
+  .tl-item p { font-size: 0.95rem; max-width: 52ch; }
+
+  /* Marquee (portfolio style: mono uppercase, lime separator) */
+  .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg1); padding: 0.9rem 0; }
+  .marquee { display: flex; white-space: nowrap; width: max-content; animation: scroll 28s linear infinite; }
+  .marquee span { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); padding: 0 1.2rem; }
+  .marquee span.sep { color: var(--lime); padding: 0; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; font-size: 1.02rem; font-weight: 500; }
+  .faq-q:hover { color: var(--lime); }
+  .faq-q .icon { color: var(--lime); font-size: 22px; transition: transform 0.2s; }
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+  .faq-a p { padding-bottom: 20px; max-width: 62ch; font-size: 0.95rem; }
+  .faq-item.open .faq-a { max-height: 200px; }
+
+  footer.site-footer { padding: 70px 0 40px; text-align: center; border-top: 1px solid var(--border); background: var(--bg1); }
+  footer.site-footer .social { display: flex; gap: 24px; justify-content: center; margin: 24px 0; }
+  footer.site-footer .social a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  footer.site-footer .social a:hover { color: var(--lime); }
+  footer.site-footer small { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--faint); letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="/">Framed<span>.</span></a>
+    <div class="navlinks">
+      <a href="/order.html">Order a frame</a>
+      <a href="/dashboard.html">Track my order</a>
+      <a href="/admin.html">Admin</a>
+    </div>
+    <a href="/order.html" class="btn btn-primary">Get started</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="glow1"></div><div class="glow2"></div>
+  <div class="shape s1"><svg viewBox="0 0 60 60"><rect x="4" y="4" width="52" height="52" fill="none" stroke="#ee2b2b" stroke-width="2"/></svg></div>
+  <div class="shape s2"><svg viewBox="0 0 60 52"><polygon points="30,4 56,48 4,48" fill="none" stroke="#ee2b2b" stroke-width="2"/></svg></div>
+  <div class="shape s3"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="none" stroke="#ee2b2b" stroke-width="2"/></svg></div>
+  <div class="shape s4"><svg viewBox="0 0 60 60"><rect x="8" y="8" width="44" height="44" fill="none" stroke="#ee2b2b" stroke-width="2" transform="rotate(15 30 30)"/></svg></div>
+
+  <div class="wrap">
+    <div class="badge"><i></i>NOW TAKING ORDERS</div>
+    <h1>Old photos <span class="stroke">deserve</span> <em>better light.</em></h1>
+    <p class="lede">Upload a photo. Our AI repairs, restores, and reimagines it — then you choose a frame and we send it to your wall.</p>
+    <div class="actions">
+      <a href="/order.html" class="btn btn-primary">Start with a photo</a>
+      <a href="/dashboard.html" class="btn btn-ghost">Track an order</a>
+    </div>
+    <div class="stats">
+      <div><strong>4</strong><span>frame styles</span></div>
+      <div><strong>5</strong><span>AI enhancement types</span></div>
+      <div><strong>5–7 days</strong><span>to your door</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="page-head">
+      <div class="kicker">Who it's for</div>
+      <h2>Built for anyone with a photo <span class="dim">worth keeping.</span></h2>
+    </div>
+    <div class="audience">
+      <div><h3>Families</h3><p>Restoring old prints, colorizing black-and-white memories.</p></div>
+      <div><h3>Gift-givers</h3><p>Weddings, anniversaries, and milestone birthdays.</p></div>
+      <div><h3>Photographers</h3><p>Offering clients a framed, enhanced print add-on.</p></div>
+      <div><h3>Realtors</h3><p>Framed listing photos and staged decor prints.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="page-head">
+      <div class="kicker">How it works</div>
+      <h2>From phone camera <span class="dim">to living room wall.</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="day">Step 1</div>
+        <h3>Upload your photo</h3>
+        <p>Any photo — a scratched print, a dim phone shot, a photo you love but never printed.</p>
+      </div>
+      <div class="tl-item">
+        <div class="day">Step 2</div>
+        <h3>Let the AI work</h3>
+        <p>We repair damage, sharpen detail, and offer a few restyled versions. You pick the one that feels right.</p>
+      </div>
+      <div class="tl-item">
+        <div class="day">Step 3</div>
+        <h3>Choose a frame</h3>
+        <p>Pick a material, size, and mat — or design your own layout.</p>
+      </div>
+      <div class="tl-item">
+        <div class="day">Step 4</div>
+        <h3>We print, frame, and ship</h3>
+        <p>Track it anytime from your dashboard, from "enhancing" to "delivered."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Classic wood</span><span class="sep">✦</span><span>Black metal</span><span class="sep">✦</span><span>Brushed brass</span><span class="sep">✦</span><span>Minimal acrylic</span><span class="sep">✦</span><span>Restoration</span><span class="sep">✦</span><span>Colorization</span><span class="sep">✦</span><span>Upscaling</span><span class="sep">✦</span><span>Restyling</span><span class="sep">✦</span><span>Classic wood</span><span class="sep">✦</span><span>Black metal</span><span class="sep">✦</span><span>Brushed brass</span><span class="sep">✦</span><span>Minimal acrylic</span><span class="sep">✦</span><span>Restoration</span><span class="sep">✦</span><span>Colorization</span><span class="sep">✦</span><span>Upscaling</span><span class="sep">✦</span><span>Restyling</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<section class="block">
+  <div class="wrap" style="max-width: 760px;">
+    <div class="page-head">
+      <div class="kicker">Questions</div>
+      <h2>Everything before <span class="dim">you send a photo.</span></h2>
+    </div>
+    <div id="faq">
+      <div class="faq-item">
+        <div class="faq-q"><span>How long does an order take?</span><span class="icon">+</span></div>
+        <div class="faq-a"><p>Most orders ship within 5–7 days of AI enhancement approval. Larger multi-photo sets may take a little longer.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I see the enhanced photo before it's printed?</span><span class="icon">+</span></div>
+        <div class="faq-a"><p>Yes — you'll get a few restyled previews to choose from before anything goes to print.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>What if I don't like the frame?</span><span class="icon">+</span></div>
+        <div class="faq-a"><p>You can change your frame style and size any time before your order enters printing, from your order confirmation email.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you offer bulk or gallery-wall sets?</span><span class="icon">+</span></div>
+        <div class="faq-a"><p>Yes, see the "Gallery wall" plan on our pricing page for multi-photo sets with a shared layout guide.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <h2 style="max-width: 18ch; margin: 0 auto 24px;">Your next photo is one upload away.</h2>
+    <a href="/order.html" class="btn btn-primary">Start with a photo</a>
+    <div class="social">
+      <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">Contact</a>
+    </div>
+    <small>© 2026 FRAMED — ALL RIGHTS RESERVED</small>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach((q) => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>

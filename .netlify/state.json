@@ -1,0 +1,21 @@
+{
+	"dbConnectionString": "postgres://postgres@localhost:61139/postgres",
+	"geolocation": {
+		"data": {
+			"city": "Ranchi",
+			"country": {
+				"code": "IN",
+				"name": "India"
+			},
+			"subdivision": {
+				"code": "JH",
+				"name": "Jharkhand"
+			},
+			"timezone": "Asia/Kolkata",
+			"latitude": 23.3426,
+			"longitude": 85.3099,
+			"postalCode": "834001"
+		},
+		"timestamp": 1790584322349
+	}
+}
