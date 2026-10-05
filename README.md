@@ -14,16 +14,10 @@ Real and working:
 - Admin login + order list + status updates (received → enhancing → printing → shipped → delivered)
 
 Stubbed for you to wire up later:
-- **AI enhancement** — there's no call to an AI model yet. When you're ready, add a
-  `netlify/functions/enhance-photo.js` function that calls a service like Replicate
-  or the Stability API with the uploaded image, and update `create-order.js` to
-  trigger it (or run it as a background function, since AI calls are slow).
-- **Payments** — no checkout yet. Stripe integrates cleanly as another Netlify Function.
-- **Photo storage** — photos are stored as base64 directly in Blobs, which is fine
-  for a demo/small volume. For production, move to S3, Cloudinary, or Netlify Large
-  Media and store just the URL.
-- **Admin auth** — uses a single shared password (see below), which is fine for one
-  or two admins. For a real team, swap in Netlify Identity or Auth0.
+- **AI enhancement** — there's no call to an AI model yet. 
+- **Payments** — no checkout yet.
+- **Photo storage** — photos are stored as base64 directly in Blobs, 
+- **Admin auth** — uses a single shared password (see below), 
 
 ## Project structure
 
